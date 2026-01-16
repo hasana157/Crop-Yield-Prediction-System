@@ -56,8 +56,8 @@ Includes:
 
 💡 **Insight:** Agricultural yields show significant regional variance and a steady increase over the decades due to technological improvements.
 
-`<img width="1538" height="934" alt="image" src="https://github.com/user-attachments/assets/263fbb01-314d-4ef3-913d-338cbc1a35cd" />
-`
+<img width="1538" height="934" alt="image" src="https://github.com/user-attachments/assets/263fbb01-314d-4ef3-913d-338cbc1a35cd" />
+
 
 ## ⚙️ Feature Engineering
 
@@ -93,13 +93,11 @@ Includes:
 | ANN (Neural Network) | ~30,000 | ~0.80 |
 | **Random Forest** | **8,945** | **0.945** |
 
-`<img width="618" height="238" alt="image" src="https://github.com/user-attachments/assets/ab833030-7c1a-4426-8c78-1f38baef7a0b" />
+<img width="618" height="238" alt="image" src="https://github.com/user-attachments/assets/ab833030-7c1a-4426-8c78-1f38baef7a0b" />
 <img width="1062" height="318" alt="image" src="https://github.com/user-attachments/assets/b1a91fa2-4fdf-4fdf-a868-49c744c4acb5" />
 
 <img width="1531" height="264" alt="image" src="https://github.com/user-attachments/assets/6d4f24a7-a4f0-45c0-bd6b-ee16419715d3" />
 
-
-`
 
 ## 🎯 Predictions
 
