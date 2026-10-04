@@ -168,7 +168,7 @@ def preprocess_data(df):
 
 def engineer_features(df):
     """Engineer features from the dataset"""
-    X = df.drop('Yield', axis=1)
+    X = df.drop('Yield', axis=1).copy()  # .copy() prevents SettingWithCopyWarning
     y = df['Yield']
     
     # Log transformation of target
@@ -178,8 +178,8 @@ def engineer_features(df):
     le_area = LabelEncoder()
     le_item = LabelEncoder()
     
-    X['Area_Encoded'] = le_area.fit_transform(X['Area'])
-    X['Item_Encoded'] = le_item.fit_transform(X['Item'])
+    X.loc[:, 'Area_Encoded'] = le_area.fit_transform(X['Area'])
+    X.loc[:, 'Item_Encoded'] = le_item.fit_transform(X['Item'])
     
     # Drop original categorical columns
     X_encoded = X.drop(['Area', 'Item'], axis=1)
@@ -298,9 +298,23 @@ elif page == "📊 Data Upload":
     
     with col1:
         st.markdown("### Upload Your Dataset")
-        st.info("📁 Upload a CSV file containing crop yield data with columns: Area, Item, Year, Value")
         
-        uploaded_file = st.file_uploader("Choose a CSV file", type=['csv'])
+        # Auto-load bundled yield.csv if available (works on Streamlit Cloud)
+        import os
+        _bundled_csv = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'yield.csv')
+        
+        if not st.session_state.data_loaded and os.path.exists(_bundled_csv):
+            try:
+                _df_auto = pd.read_csv(_bundled_csv)
+                st.session_state.df_original = _df_auto
+                st.session_state.data_loaded = True
+                st.success("✅ Bundled dataset (yield.csv) loaded automatically!")
+            except Exception as _e:
+                st.warning(f"Could not auto-load yield.csv: {_e}")
+        
+        st.info("📁 You can also upload a custom CSV file with columns: Area, Item, Year, Value")
+        
+        uploaded_file = st.file_uploader("Upload a custom CSV file (optional)", type=['csv'])
         
         if uploaded_file is not None:
             try:
@@ -743,9 +757,9 @@ elif page == "🤖 Model Training":
             optimize_rf = st.checkbox("⚙️ Optimize Random Forest (GridSearchCV)", value=False)
             
             if not TENSORFLOW_AVAILABLE:
-                st.warning("⚠️ TensorFlow not installed. Install with: `pip install tensorflow`")
+                st.warning("⚠️ TensorFlow is not available in this deployment. Linear Regression and Random Forest are fully functional. To enable ANN, run locally with TensorFlow installed.")
             
-            st.info("⚠️ Note: Training ANN and optimizing Random Forest may take several minutes")
+            st.info("⚠️ Note: Training may take a few minutes, especially with large datasets")
         
         with col2:
             st.markdown("#### Training Parameters")
