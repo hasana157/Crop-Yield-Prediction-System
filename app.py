@@ -122,22 +122,6 @@ with st.sidebar:
                     label_visibility="collapsed")
     
     st.markdown("---")
-    st.markdown("### 📚 Project Info")
-    st.info("""
-    **COMSATS University Islamabad**
-    
-    **Developers:**
-    - Hasana Zahid  
-      (SP24-BAI-060)
-    - Dur-e-Shahwar  
-      (SP24-BAI-013)
-    
-    **Instructors:**
-    - Mr. Umar Nouman
-    - Ms. Hilal Jan
-    """)
-    
-    st.markdown("---")
     st.markdown("### 📊 Dataset Info")
     if st.session_state.data_loaded:
         st.success("✅ Data Loaded")
@@ -255,15 +239,6 @@ if page == "🏠 Home":
         """)
     
     with col2:
-        st.markdown("### 🎓 Academic Context")
-        st.markdown("""
-        **Course**: BS Artificial Intelligence
-        
-        **Institution**: COMSATS University Islamabad
-        
-        **Year**: 2024-2028
-        """)
-        
         st.markdown("### 📚 Technologies Used")
         technologies = {
             "Python": "🐍",
@@ -1449,14 +1424,4 @@ elif page == "🎯 Predictions":
             except Exception as e:
                 st.error(f"Error processing batch file: {str(e)}")
                 st.info("💡 Make sure your CSV has columns: Year, Area, Item with valid values from the training data.")
-
-# Footer
-st.markdown("---")
-st.markdown("""
-<div style='text-align: center; color: #666; padding: 2rem;'>
-    <p><strong>Crop Yield Prediction System</strong></p>
-    <p>COMSATS University Islamabad | BS Artificial Intelligence (2024-2028)</p>
-    <p>Developed by Hasana Zahid & Dur-e-Shahwar</p>
-    <p>© 2024 All Rights Reserved</p>
-</div>
-""", unsafe_allow_html=True)
+
