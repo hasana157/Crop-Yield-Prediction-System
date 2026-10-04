@@ -119,6 +119,7 @@ Outputs:
 ✔ **Visual Metrics:** Live performance visualization.
 
 **Run App:**
+https://crop-yield-prediction-system-tyfyftgzctr8hkcypcgggm.streamlit.app/
 
 ```bash
 streamlit run app.py
